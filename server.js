@@ -8,7 +8,7 @@ const logger = require("./logger/loggerService");
 
 mongoose
   .connect(
-    "mongodb://admin:MorMafhidaBesharatim23%23%23@185.229.226.27:27017/BookStore?authSource=admin"
+    "mongodb+srv://maxim526:gpbKgEcB3Bhuc9xR@book-store-ariela.vy7rgqw.mongodb.net/"
   )
   .then(() => console.log("MongoDB connected successfully"))
   .catch((err) => console.error("MongoDB connection error:", err));
