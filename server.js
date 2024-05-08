@@ -28,28 +28,12 @@ app.use(express.json({ limit: "50mb" }));
 
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-
-      if (
-        origin.startsWith("http://localhost:") ||
-        origin.startsWith("https://localhost:")
-      ) {
-        return callback(null, true);
-      }
-
-      return callback(
-        new Error("CORS policy does not allow this origin"),
-        false
-      );
-    },
+app.use(cors({
+    origin: true,
     credentials: true,
-    methods: "GET,PUT,POST,DELETE",
-    allowedHeaders: "Content-Type, Accept, Authorization",
-  })
-);
+    methods: 'GET,PUT,POST,DELETE',
+    allowedHeaders: 'Content-Type, Accept, Authorization'
+}));
 
 app.use("/book", apiLimiter, bookRoutes);
 app.use("/user", apiLimiter, userRoutes);
