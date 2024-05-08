@@ -6,7 +6,7 @@ const userRoutes = require("./userRoutes");
 const logger = require("./logger/loggerService");
 
 mongoose.connect(
-    "mongodb+srv://maxim526:gpbKgEcB3Bhuc9xR@book-store-ariela.vy7rgqw.mongodb.net/",
+    "mongodb+srv://maxim526:gpbKgEcB3Bhuc9xR@book-store-ariela.vy7rgqw.mongodb.net/BookStore",
     { useNewUrlParser: true, useUnifiedTopology: true }
 )
     .then(() => console.log("MongoDB connected successfully"))
