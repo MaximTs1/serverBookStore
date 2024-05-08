@@ -6,12 +6,12 @@ const userRoutes = require("./userRoutes");
 const rateLimit = require("express-rate-limit");
 const logger = require("./logger/loggerService");
 
-mongoose
-  .connect(
-    "mongodb+srv://maxim526:gpbKgEcB3Bhuc9xR@book-store-ariela.vy7rgqw.mongodb.net/"
-  )
-  .then(() => console.log("MongoDB connected successfully"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+mongoose.connect(
+    "mongodb+srv://maxim526:gpbKgEcB3Bhuc9xR@book-store-ariela.vy7rgqw.mongodb.net/",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+)
+    .then(() => console.log("MongoDB connected successfully"))
+    .catch((err) => console.error("MongoDB connection error:", err));
 
 const app = express();
 const port = process.env.PORT || 3001;
