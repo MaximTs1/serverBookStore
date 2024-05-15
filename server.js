@@ -3,7 +3,6 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bookRoutes = require("./bookRoutes");
 const userRoutes = require("./userRoutes");
-const rateLimit = require("express-rate-limit");
 const logger = require("./logger/loggerService");
 
 mongoose.connect(
