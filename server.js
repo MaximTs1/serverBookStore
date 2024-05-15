@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bookRoutes = require("./bookRoutes");
 const userRoutes = require("./userRoutes");
+const rateLimit = require("express-rate-limit");
 const logger = require("./logger/loggerService");
 
 mongoose.connect(
@@ -15,9 +16,11 @@ mongoose.connect(
 const app = express();
 const port = process.env.PORT || 3001;
 
+
 app.use(logger);
 
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 app.use(cors({
     origin: true,
