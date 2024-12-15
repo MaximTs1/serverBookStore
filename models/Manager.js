@@ -10,7 +10,9 @@ const managerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-});
+},
+  { collection: "managers" }
+);
 
 const Manager = mongoose.model("Manager", managerSchema);
 
