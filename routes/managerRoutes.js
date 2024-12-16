@@ -5,7 +5,6 @@ const router = express.Router();
 
 
 const Manager = require("../models/Manager");
-const authGuard = require("../auth/auth-guard");
 const { JWT_SECRET } = require("../config");
 const Counter = require("../models/Counter");
 const User = require("../models/User");
@@ -87,7 +86,7 @@ router.post("/create-manager", async (req, res) => {
   }
 });
 
-router.put("/updateOrderStatus/:orderId", authGuard,  async (req, res) => {
+router.put("/updateOrderStatus/:orderId",  async (req, res) => {
   const { orderId } = req.params;
   const { status } = req.body;
   try {
@@ -127,7 +126,7 @@ router.get("/all-users",  async (req, res) => {
 });
 
 
-router.get("/orders", authGuard, async (req, res) => {
+router.get("/orders", async (req, res) => {
   try {
     const users = await User.find({});
     const ordersData = users.reduce((acc, user) => {
