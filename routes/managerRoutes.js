@@ -43,7 +43,7 @@ router.post("/login-manager", async (req, res) => {
 
   delete managerResult.password;
 
-  managerResult.token = jwt.sign({ id: managerResult._id }, JWT_ADMIN, {
+  managerResult.token = jwt.sign({ id: managerResult._id }, JWT_SECRET, {
     expiresIn: "1h",
   });
 
