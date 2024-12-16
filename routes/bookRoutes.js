@@ -6,9 +6,6 @@ const router = express.Router();
 const Book = require("../models/Book");
 const Counter = require("../models/Counter");
 
-const authGuard = require("../auth/auth-guard");
-const { JWT_SECRET, JWT_FORGOT_PASSWORD, getUserId } = require("../config");
-
 // GET all books
 router.get("/get-books", async (req, res) => {
   try {
@@ -21,7 +18,7 @@ router.get("/get-books", async (req, res) => {
 });
 
 // ADD a single book
-router.post("/add-book" ,authGuard, async (req, res) => {
+router.post("/add-book", async (req, res) => {
   try {
     const countDocument = await Counter.findByIdAndUpdate(
       { _id: "bookId" },
@@ -56,7 +53,7 @@ router.post("/add-book" ,authGuard, async (req, res) => {
   }
 });
 
-router.get("/book-by-custom-id/:customId",authGuard, async (req, res) => {
+router.get("/book-by-custom-id/:customId", async (req, res) => {
   try {
     const customId = req.params.customId;
     const book = await Book.findOne({ customId: customId });
@@ -71,7 +68,7 @@ router.get("/book-by-custom-id/:customId",authGuard, async (req, res) => {
   }
 });
 
-router.put("/update-book/:customId",authGuard, async (req, res) => {
+router.put("/update-book/:customId", async (req, res) => {
   try {
     const { customId } = req.params;
     const updatedData = req.body;
@@ -91,7 +88,7 @@ router.put("/update-book/:customId",authGuard, async (req, res) => {
   }
 });
 
-router.delete("/delete-book/:customId",authGuard, async (req, res) => {
+router.delete("/delete-book/:customId", async (req, res) => {
   try {
     const { customId } = req.params;
     const deletedBook = await Book.findOneAndDelete({ customId });
@@ -107,7 +104,7 @@ router.delete("/delete-book/:customId",authGuard, async (req, res) => {
   }
 });
 
-router.post("/update-stock",authGuard, async (req, res) => {
+router.post("/update-stock", async (req, res) => {
   try {
     const purchasedItems = req.body;
 
