@@ -4,7 +4,6 @@ const express = require("express");
 const router = express.Router();
 
 const User = require("../models/User");
-const authGuard = require("../auth/auth-guard");
 const { JWT_SECRET, JWT_FORGOT_PASSWORD, getUserId } = require("../config");
 const Counter = require("../models/Counter");
 // const transporter = require("./utils/Email Services/emailService");
@@ -12,7 +11,7 @@ const { LocalStorage } = require("node-localstorage");
 const localStorage = new LocalStorage("../scratch");
 const { loginSchema } = require("../utils/Joi/JoiValidation");
 
-router.get("/login", authGuard, async (req, res) => {
+router.get("/login", async (req, res) => {
   const _id = getUserId(req, res);
 
   try {
@@ -102,9 +101,9 @@ router.post("/login", async (req, res) => {
   res.send(userResult);
 });
 
-router.get("/logout", authGuard, async (req, res) => {});
+router.get("/logout", async (req, res) => {});
 
-router.put("/get-user-info/:customId", authGuard, async (req, res) => {
+router.put("/get-user-info/:customId", async (req, res) => {
   try {
     const { customId } = req.params;
     const {
@@ -141,7 +140,7 @@ router.put("/get-user-info/:customId", authGuard, async (req, res) => {
   }
 });
 
-router.put("/update-likedBooks/:customId", authGuard, async (req, res) => {
+router.put("/update-likedBooks/:customId", async (req, res) => {
   try {
     const { customId } = req.params;
     const { likedBooks } = req.body;
@@ -162,7 +161,7 @@ router.put("/update-likedBooks/:customId", authGuard, async (req, res) => {
   }
 });
 
-router.get("/get-favorite-books/:customId", authGuard, async (req, res) => {
+router.get("/get-favorite-books/:customId", async (req, res) => {
   try {
     const customId = req.params.customId;
     const user = await User.findOne({ customId: customId });
@@ -177,7 +176,7 @@ router.get("/get-favorite-books/:customId", authGuard, async (req, res) => {
   }
 });
 
-router.put("/update-order-history/:customId", authGuard, async (req, res) => {
+router.put("/update-order-history/:customId", async (req, res) => {
   const countDocument = await Counter.findByIdAndUpdate(
     { _id: "orderId" },
     { $inc: { seq: 1 } },
@@ -211,7 +210,7 @@ router.put("/update-order-history/:customId", authGuard, async (req, res) => {
   }
 });
 
-router.get("/order-history/:customId", authGuard, async (req, res) => {
+router.get("/order-history/:customId", async (req, res) => {
   try {
     const { customId } = req.params;
     const user = await User.findOne({ customId });
