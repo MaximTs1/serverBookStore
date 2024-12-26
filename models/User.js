@@ -20,7 +20,7 @@ const dliveryInfo = new mongoose.Schema({
 
 // Schema for an order in the order history
 const orderSchema = new mongoose.Schema({
-  orderId: { type: Number, required: false, unique: true },
+  orderId: { type: Number, required: false},
   cart: [cartItemSchema],
   date: Date,
   orderStatus: String,
