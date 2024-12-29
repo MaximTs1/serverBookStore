@@ -5,4 +5,5 @@ Hi !
 3. Create user in the client site.
 4. Create orders and manage them !
 
-start all projects with: npm run start
+*start all projects with: npm run start
+*book photo max 50kb
